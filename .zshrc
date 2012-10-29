@@ -13,12 +13,14 @@ autoload -U compinit promptinit
 compinit
 promptinit;
 
+
 if [[ $EUID == 0 ]]
 then
-PROMPT=$'%{\e[1;31m%}[%n@%m %{\e[1;31m%}%~]#%{\e[0m%} ' # user dir %
+PROMPT=$'%{\e[1;31m%}[%n@%m %{\e[1;31m%}%~]#%{\e[0m%} ' # root dir %
 else
-PROMPT=$'[%n@%m %~]$%{\e[0m%} ' # root dir #
+PROMPT=$'%{\e[0;36m%}[%n@%m %{\e[1;34m%}%~%{\e[1;36m%}]%{\e[1;32m%}$ ' # user dir #
 fi
+
 RPROMPT=$'%{\e[1;34m%}%T%{\e[0m%}' # right prompt with time
 
 zstyle -e ':completion::*:*:*:hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
